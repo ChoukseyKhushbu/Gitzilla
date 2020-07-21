@@ -1,0 +1,197 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* color: white; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* .container { 
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+} */
+/* @media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+} */
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  /* background-color: yellow; */
+}
+.sidebar {
+  box-sizing: border-box;
+  color: white;
+  padding: 20px;
+  width: 30%;
+  /* flex: 1; */
+  /* max-width: 800px; */
+  background-color: #6c63ff;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  &.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    // overflow-y: scroll;
+  }
+  /* position: fixed; */
+}
+.footer {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+}
+/* .sidebar::before {
+  content: "";
+  width: 500px;
+  position: absolute;
+  top: 0;
+  left: -72px;
+  transform: skewX(-10deg);
+  z-index: -1;
+} */
+/* .home {
+  background-image: url("./assets/background.svg");
+} */
+.main {
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.home {
+    justify-content: center;
+  }
+  /* width: 60%; */
+  flex: 1;
+  // overflow-y: scroll;
+  // height: 100vh;
+}
+
+img {
+  width: 50%;
+  height: 50%;
+}
+
+li {
+  list-style-type: none;
+  padding-bottom: 5px;
+}
+.heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  font-size: 2.75rem;
+}
+.inputContainer {
+  margin-top: 100px;
+}
+a {
+  text-decoration: none;
+}
+/* .button {
+  color: white;
+} */
+
+input[type="text"] {
+  width: 70%;
+  height: 2rem;
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  background: #f0f1f9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+.skills {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}
+.skills span {
+  background-color: white;
+  text-align: center;
+  color: black;
+  padding: 8px 10px;
+  border-radius: 2px;
+  margin: 0 15px 15px 0;
+}
+.repoContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: flex-start; */
+}
+.repoCard {
+  box-sizing: border-box;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  padding: 20px;
+  width: 250px;
+  margin: 10px;
+  /* flex: 1; */
+  background-color: #dddddd;
+  position: relative;
+  & span {
+    font-size: 0.75rem;
+    background-color: white;
+    text-align: center;
+    color: black;
+    border-radius: 2px;
+    padding: 4px 6px;
+    position: absolute;
+    bottom: 15px;
+    // margin-top: 15px;
+  }
+  & p {
+    padding-bottom: 15px;
+  }
+  & a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #6c63ff;
+  }
+}
+.social {
+  display: flex;
+}
+.social > span {
+  margin: 0 20px 20px 0;
+}
+
+.details > div {
+  & i {
+    padding-right: 5px;
+  }
+  margin-bottom: 10px;
+}
