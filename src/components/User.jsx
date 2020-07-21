@@ -36,57 +36,65 @@ const User = () => {
 
   return (
     <>
-      {userData ? (
-        <>
-          <div className="sidebar user">
-            <div>
+      <div className="sidebar user">
+        <div>
+          <div className="avatar">
+            {userData && (
               <img src={userData.avatar_url} className="profile" alt="" />
+            )}
+          </div>
+          {userData && (
+            <>
               <h1>{userData.name}</h1>
               <p>{userData.bio}</p>
-            </div>
-            <div>
-              <h3>Skills</h3>
-              <div className="skills">
-                {Object.keys(skills).map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </div>
-            </div>
-            <div className="social">
-              <span>{userData.followers} followers</span>
-              <span>{userData.following} following</span>
-            </div>
-            <div className="details">
-              {userData.company && (
-                <div>
-                  <i className="fas fa-building"></i>
-                  {userData.company}
-                </div>
-              )}
-              {userData.blog && (
-                <div>
-                  <i className="fas fa-link"></i>
-                  {userData.blog}
-                </div>
-              )}
+            </>
+          )}
+        </div>
+        <div>
+          <h3>Skills</h3>
+          <div className="skills">
+            {Object.keys(skills).map((s) => (
+              <span key={s}>{s}</span>
+            ))}
+          </div>
+        </div>
+        {userData && (
+          <div className="social">
+            <span>{userData.followers} followers</span>
+            <span>{userData.following} following</span>
+          </div>
+        )}
+        {userData && (
+          <div className="details">
+            {userData.company && (
               <div>
-                <i className="fas fa-map-marker-alt"></i>
-                {userData.location}
+                <i className="fas fa-building"></i>
+                {userData.company}
               </div>
+            )}
+            {userData.blog && (
+              <div>
+                <i className="fas fa-link"></i>
+                {userData.blog}
+              </div>
+            )}
+            <div>
+              <i className="fas fa-map-marker-alt"></i>
+              {userData.location}
             </div>
           </div>
-          <div className="main">
-            <h1>Repositories</h1>
-            <div className="repoContainer">
-              {repos.map((repo) => (
-                <RepoCard key={repo.id} repo={repo} />
+        )}
+      </div>
+      <div className="main">
+        <h1>Repositories</h1>
+        <div className="repoContainer">
+          {userData && repos.length > 0
+            ? repos.map((repo) => <RepoCard key={repo.id} repo={repo} />)
+            : [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 44].map((p) => (
+                <div className="repoCard" style={{ height: "150px" }}></div>
               ))}
-            </div>
-          </div>
-        </>
-      ) : (
-        <h1>loading...</h1>
-      )}
+        </div>
+      </div>
     </>
   );
 };

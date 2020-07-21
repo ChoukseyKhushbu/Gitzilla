@@ -1,0 +1,91 @@
+$light: #c6c9cf;
+$light50: rgba(198, 201, 207, 0.5);
+$light20: rgba(198, 201, 207, 0.2);
+// $light50: #a0a0a0;
+$lightBlue: #202737;
+$lightBlue50: rgba(32, 39, 55, 0.1);
+$darkBlue: #171926;
+$darkBlueOpacity05: rgba(22, 24, 38, 0.4);
+
+$white: rgb(240, 240, 240);
+$pink: #d61252;
+$pink80: rgba(214, 18, 82, 0.8);
+$lightPink: rgba(214, 18, 82, 0.5);
+
+$sidebar-width: 250px;
+
+.shine {
+  background: $lightBlue;
+  background-image: linear-gradient(
+    to right,
+    $lightBlue 0%,
+    $light20 20%,
+    $lightBlue 40%,
+    $lightBlue 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 100%;
+  display: inline-block;
+  position: relative;
+
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+// .shineDark {
+//   background: $darkBlue;
+//   background-image: linear-gradient(
+//     to right,
+//     $darkBlue 0%,
+//     $light20 20%,
+//     $darkBlue 40%,
+//     $darkBlue 100%
+//   );
+//   background-repeat: no-repeat;
+//   background-size: 800px 100%;
+//   display: inline-block;
+//   position: relative;
+
+//   animation-duration: 1s;
+//   animation-fill-mode: forwards;
+//   animation-iteration-count: infinite;
+//   animation-name: placeholderShimmer;
+//   animation-timing-function: linear;
+// }
+
+// @keyframes placeholderShimmer {
+//   0% {
+//     background-position: -468px 0;
+//   }
+
+//   100% {
+//     background-position: 468px 0;
+//   }
+// }
+
+.box {
+  height: 128px;
+  width: 128px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+}
+
+.lines {
+  border-radius: 8px;
+  height: 1.2rem;
+  //   margin-top: 10px;
+  width: 200px;
+}
