@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-// import { Link } from "react-router-dom";
 import RepoCard from "./RepoCard";
 
 const User = () => {
