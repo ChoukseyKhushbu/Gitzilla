@@ -15,7 +15,9 @@ const User = () => {
       try {
         const res = await Axios.get(`https://api.github.com/users/${userName}`);
         setuserData(res.data);
-        const userRepos = await Axios.get(res.data.repos_url);
+        const userRepos = await Axios.get(
+          `${res.data.repos_url}?page=1&per_page=100&sort=updated`
+        );
         // console.log(userRepos.data);
         setrepos(userRepos.data);
         let obj = {};
@@ -75,7 +77,14 @@ const User = () => {
             {userData.blog && (
               <div>
                 <i className="fas fa-link"></i>
-                {userData.blog}
+                <a
+                  href={userData.blog}
+                  style={{ color: "inherit" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {userData.blog}
+                </a>
               </div>
             )}
             <div>
@@ -90,7 +99,7 @@ const User = () => {
         <div className="repoContainer">
           {userData && repos.length > 0
             ? repos.map((repo) => <RepoCard key={repo.id} repo={repo} />)
-            : [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 44].map((p) => (
+            : [...Array(12)].map((p) => (
                 <div className="repoCard" style={{ height: "150px" }}></div>
               ))}
         </div>

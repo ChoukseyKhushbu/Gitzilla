@@ -56,8 +56,8 @@ code {
   &.user {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    // overflow-y: scroll;
+    // justify-content: space-around;
+    overflow-y: scroll;
   }
   /* position: fixed; */
 }
@@ -147,6 +147,9 @@ input[type="text"] {
     border-radius: 50px;
   }
 }
+div.user > div:first-child {
+  margin: 10px 0;
+}
 .skills {
   display: flex;
   flex-direction: row;
@@ -212,12 +215,26 @@ input[type="text"] {
   display: flex;
 }
 .social > span {
-  margin: 0 20px 20px 0;
+  margin: 20px 20px 20px 0;
 }
 
 .details > div {
   i {
     padding-right: 5px;
   }
-  margin-bottom: 10px;
+  margin: 10px 0;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  // display: none;
+  background: $darkBlue;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $light20;
+  border-radius: 6px;
+  // border: 3px solid $darkBlueOpacity05;
+}
 }
