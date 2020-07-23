@@ -92,6 +92,7 @@ code {
   /* width: 60%; */
   flex: 1;
   padding: 20px;
+  overflow: hidden;
   // overflow-y: scroll;
   // height: 100vh;
 }
@@ -166,8 +167,9 @@ div.user > div:first-child {
 }
 .repoContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, calc((100% - 40px) / 3));
   gap: 20px;
+  position: relative;
   // flex-direction: row;
   // flex-wrap: wrap;
   // justify-content: center;
@@ -180,7 +182,7 @@ div.user > div:first-child {
   display: block;
   border-radius: 4px;
   padding: 20px;
-  max-width: 300px;
+  // max-width: 300px;
   /* flex: 1; */
   background-color: $darkBlueOpacity05;
   position: relative;
@@ -229,12 +231,37 @@ div.user > div:first-child {
 }
 
 ::-webkit-scrollbar-track {
-  // display: none;
   background: $darkBlue;
 }
 ::-webkit-scrollbar-thumb {
   background-color: $light20;
   border-radius: 6px;
-  // border: 3px solid $darkBlueOpacity05;
 }
+
+@media only screen and (max-width: 1190px) {
+  .repoContainer {
+    grid-template-columns: repeat(2, calc((100% - 20px) / 2));
+  }
+}
+
+// @media only screen and (max-width: 1024px) {
+//   .repoCard {
+//     max-width: 300px;
+//   }
+// }
+
+@media only screen and (max-width: 648px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar.user {
+    width: 100vw;
+    overflow-y: hidden;
+    position: unset;
+    height: auto;
+  }
+  .repoContainer {
+    display: grid;
+    grid-template-columns: 100%;
+  }
 }
