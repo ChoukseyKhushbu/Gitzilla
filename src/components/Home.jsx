@@ -22,34 +22,34 @@ const Home = (props) => {
   };
   return (
     <>
-      <div className="sidebar">
-        <h1 className="heading">GitZilla</h1>
-        <p>A resume builder for your GitHub profile.</p>
-        <ul>
-          <li>Fetches your details</li>
-          <li>Links to your repos</li>
-          <li>Fetches your skills</li>
-          <li>Access to anyone with the link</li>
-        </ul>
+      <div className="leftContainer">
+        <div className="content">
+          <h1 className="heading">GitZilla</h1>
+          <p>A resume builder for your GitHub profile.</p>
+          <ul>
+            <li>-Fetches your skills</li>
+            <li>-Fetches your details</li>
+            <li>-Links to your repos</li>
+          </ul>
 
-        <div className="inputContainer">
-          <label htmlFor="Username" className="inputLabel">
-            Enter your GitHub Username
-          </label>
-          <input
-            name="Username"
-            type="text"
-            value={props.userName}
-            onChange={handleChange}
-          />
-          <Link
-            to={`/users/${props.userName}`}
-            className="button"
-            style={!props.userName ? { pointerEvents: "none" } : {}}
-          >
-            Generate Resume
-          </Link>
-          {/* <Button
+          <div className="inputContainer">
+            <label htmlFor="Username" className="inputLabel">
+              Enter your GitHub Username
+            </label>
+            <input
+              name="Username"
+              type="text"
+              value={props.userName}
+              onChange={handleChange}
+            />
+            <Link
+              to={`/users/${props.userName}`}
+              className="button"
+              style={!props.userName ? { pointerEvents: "none" } : {}}
+            >
+              Generate Resume
+            </Link>
+            {/* <Button
             variant="outlined"
             // color="secondary"
             size="small"
@@ -59,12 +59,17 @@ const Home = (props) => {
           >
             Generate Resume
           </Button> */}
+          </div>
         </div>
-        {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-        <div className="footer">Made with ❤️ by Khushbu</div>
       </div>
-      <div className="main home">
-        <img src={require("../assets/background.svg")} alt=" resume builder" />
+      <div className="rightContainer">
+        <img
+          className="octocat"
+          src={require("../assets/femalecodertocat.png")}
+          alt=" resume builder"
+        />
+        {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+        {/* <div className="footer">Made with ❤️ by Khushbu</div> */}
       </div>
     </>
   );

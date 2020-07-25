@@ -62,21 +62,20 @@ code {
   /* position: fixed; */
 }
 .footer {
-  width: 100%;
-  text-align: center;
   position: absolute;
+  // z-index: 1;
   bottom: 10px;
-  right: 5px;
+  // right: 5px;
 }
-/* .sidebar::before {
-  content: "";
-  width: 500px;
-  position: absolute;
-  top: 0;
-  left: -72px;
-  transform: skewX(-10deg);
-  z-index: -1;
-} */
+// .sidebar::before {
+//   content: "";
+//   width: 500px;
+//   position: absolute;
+//   top: 0;
+//   left: -72px;
+//   transform: skewX(-10deg);
+//   // z-index: -1;
+// }
 /* .home {
   background-image: url("./assets/background.svg");
 } */
@@ -97,9 +96,11 @@ code {
   // height: 100vh;
 }
 
-img {
-  width: 50%;
-  height: 50%;
+.octocat {
+  position: absolute;
+  width: 150%;
+  left: -219px;
+  z-index: 1;
 }
 
 li {
@@ -107,13 +108,11 @@ li {
   padding-bottom: 5px;
 }
 .heading {
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  font-size: 3rem;
+  font-size: 5rem;
+  margin-block-start: 0;
 }
 .inputContainer {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 a {
   text-decoration: none;
@@ -131,6 +130,7 @@ a {
 
 input[type="text"] {
   width: 70%;
+  display: block;
   padding: 10px 15px;
   margin: 10px 0 20px 0;
   border-radius: 5px;
@@ -178,7 +178,6 @@ div.user > div:first-child {
 
 .repoCard {
   box-sizing: border-box;
-  // border: 1px solid #c4c4c4;
   display: block;
   border-radius: 4px;
   padding: 20px;
@@ -264,4 +263,46 @@ div.user > div:first-child {
     display: grid;
     grid-template-columns: 100%;
   }
+}
+.leftContainer {
+  background-color: $darkBlue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // width: 60%;
+  flex: 2;
+}
+.rightContainer {
+  background-color: $lightBlue;
+  flex: 1;
+  position: relative;
+}
+// .leftConatiner::before {
+//   content: "";
+//   width: 500px;
+//   position: absolute;
+//   top: 0;
+//   left: -72px;
+//   transform: skewX(-10deg);
+//   z-index: -1;
+// }
+.rightContainer::before {
+  content: "";
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: -47px;
+  transform: skewX(-13deg) translateX(-50%);
+  // z-index: -1;
+  height: 100vh;
+  background-color: $lightBlue;
+}
+ul {
+  padding-inline-start: 0;
+}
+.content {
+  position: absolute;
+  font-size: 1.25rem;
+  left: 17%;
 }
