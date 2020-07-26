@@ -15,7 +15,9 @@ const User = () => {
       try {
         const res = await Axios.get(`https://api.github.com/users/${userName}`);
         setuserData(res.data);
-        const userRepos = await Axios.get(res.data.repos_url);
+        const userRepos = await Axios.get(
+          `${res.data.repos_url}?page=1&per_page=100&sort=updated`
+        );
         // console.log(userRepos.data);
         setrepos(userRepos.data);
         let obj = {};
@@ -38,24 +40,36 @@ const User = () => {
     <>
       <div className="sidebar user">
         <div>
-          <div className="avatar">
+          <div className="avatar shine">
             {userData && (
               <img src={userData.avatar_url} className="profile" alt="" />
             )}
           </div>
-          {userData && (
+          {userData ? (
             <>
               <h1>{userData.name}</h1>
               <p>{userData.bio}</p>
+            </>
+          ) : (
+            <>
+              {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+              <h1 className="lines shine"></h1>
+              <p className="lines shine"></p>
             </>
           )}
         </div>
         <div>
           <h3>Skills</h3>
           <div className="skills">
-            {Object.keys(skills).map((s) => (
-              <span key={s}>{s}</span>
-            ))}
+            {Object.keys(skills).length > 0
+              ? Object.keys(skills).map((s) => <span key={s}>{s}</span>)
+              : [...Array(5)].map((a) => (
+                  <span
+                    key={a}
+                    className="shine"
+                    style={{ width: "50px", height: "20px" }}
+                  ></span>
+                ))}
           </div>
         </div>
         {userData && (
@@ -75,7 +89,14 @@ const User = () => {
             {userData.blog && (
               <div>
                 <i className="fas fa-link"></i>
-                {userData.blog}
+                <a
+                  href={userData.blog}
+                  style={{ color: "inherit" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {userData.blog}
+                </a>
               </div>
             )}
             <div>
@@ -90,8 +111,12 @@ const User = () => {
         <div className="repoContainer">
           {userData && repos.length > 0
             ? repos.map((repo) => <RepoCard key={repo.id} repo={repo} />)
-            : [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 44].map((p) => (
-                <div className="repoCard" style={{ height: "150px" }}></div>
+            : [...Array(12)].map((p) => (
+                <div
+                  key={p}
+                  className="repoCard shine"
+                  style={{ height: "150px" }}
+                ></div>
               ))}
         </div>
       </div>
