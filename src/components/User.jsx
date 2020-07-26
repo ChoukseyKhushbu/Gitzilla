@@ -53,7 +53,7 @@ const User = () => {
           ) : (
             <>
               {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-              <h1 className="lines shine"></h1>
+              <h1 className="lines shine" style={{ display: "block" }}></h1>
               <p className="lines shine"></p>
             </>
           )}
