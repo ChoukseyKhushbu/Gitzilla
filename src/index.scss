@@ -35,6 +35,12 @@ code {
     width: 1170px;
   }
 } */
+.mobileTop {
+  display: none;
+}
+.mobileBottom {
+  display: none;
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -100,7 +106,9 @@ code {
   position: absolute;
   width: 150%;
   left: -219px;
+  top: 50%;
   z-index: 1;
+  transform: translateY(-50%);
 }
 
 li {
@@ -305,4 +313,88 @@ ul {
   position: absolute;
   font-size: 1.25rem;
   left: 17%;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 768px) {
+  .leftContainer {
+    display: none;
+  }
+  .rightContainer {
+    display: none;
+  }
+  .sidebar.user {
+    width: 100vw;
+    overflow-y: hidden;
+    position: unset;
+    height: auto;
+  }
+  .container {
+    flex-direction: column;
+    overflow: hidden;
+    background-color: $darkBlue;
+  }
+  .mobileTop {
+    display: flex;
+    flex-direction: column;
+    background-color: $darkBlue;
+    flex: 1;
+    padding: 20px 41% 0 10%;
+    p {
+      font-size: 1.25rem;
+    }
+  }
+  .mobileBottom {
+    display: flex;
+    background-color: transparent;
+    flex: 1;
+    position: relative;
+  }
+  .mobileBottom::before {
+    content: "";
+    width: 100%;
+    position: absolute;
+    // top: 0;
+    // right: -47px;
+    transform: skewY(-14deg) translateY(4%);
+    // z-index: 1;
+    height: 100vh;
+    background-color: $lightBlue;
+  }
+  .inputContainer {
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    padding-left: 10%;
+    padding-right: 20%;
+    padding-top: 10%;
+  }
+  input[type="text"] {
+    width: 100%;
+  }
+  .button {
+    width: 100%;
+    text-align: center;
+    padding: 10px 17px;
+  }
+  .mobileOctocat {
+    // position: absolute;
+    // width: 250px;
+    // left: 30%;
+    // bottom: 170px;
+    position: fixed;
+    width: 68%;
+    max-width: 300px;
+    top: 117px;
+    right: -25px;
+    left: unset;
+    z-index: 1;
+  }
+}
+@media screen and (min-width: 770px) and (max-width: 966px) {
+  .content {
+    p {
+      max-width: 300px;
+    }
+  }
 }

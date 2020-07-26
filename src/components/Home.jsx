@@ -27,9 +27,9 @@ const Home = (props) => {
           <h1 className="heading">GitZilla</h1>
           <p>A resume builder for your GitHub profile.</p>
           <ul>
-            <li>-Fetches your skills</li>
-            <li>-Fetches your details</li>
-            <li>-Links to your repos</li>
+            <li>- Fetches your skills</li>
+            <li>- Fetches your details</li>
+            <li>- Links to your repos</li>
           </ul>
 
           <div className="inputContainer">
@@ -70,6 +70,35 @@ const Home = (props) => {
         />
         {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
         {/* <div className="footer">Made with ❤️ by Khushbu</div> */}
+      </div>
+      <div className="mobileTop">
+        <h1>GitZilla</h1>
+        <p>A resume builder for your GitHub profile</p>
+        <img
+          className="mobileOctocat"
+          src={require("../assets/femalecodertocat.png")}
+          alt=" resume builder"
+        />
+      </div>
+      <div className="mobileBottom">
+        <div className="inputContainer">
+          <label htmlFor="Username" className="inputLabel">
+            Enter your GitHub Username
+          </label>
+          <input
+            name="Username"
+            type="text"
+            value={props.userName}
+            onChange={handleChange}
+          />
+          <Link
+            to={`/users/${props.userName}`}
+            className="button"
+            style={!props.userName ? { pointerEvents: "none" } : {}}
+          >
+            Generate Resume
+          </Link>
+        </div>
       </div>
     </>
   );
