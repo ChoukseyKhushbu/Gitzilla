@@ -47,7 +47,11 @@ const User = () => {
           </div>
           {userData ? (
             <>
-              <h1>{userData.name}</h1>
+              <h1>
+                {userData.name && userData.name.length > 0
+                  ? userData.name
+                  : userName}
+              </h1>
               <p>{userData.bio}</p>
             </>
           ) : (
@@ -61,7 +65,7 @@ const User = () => {
         <div>
           <h3>Skills</h3>
           <div className="skills">
-            {Object.keys(skills).length > 0
+            {Object.keys(skills).length > 0 || repos.length > 0
               ? Object.keys(skills).map((s) => <span key={s}>{s}</span>)
               : [...Array(5)].map((a) => (
                   <span
@@ -99,10 +103,12 @@ const User = () => {
                 </a>
               </div>
             )}
-            <div>
-              <i className="fas fa-map-marker-alt"></i>
-              {userData.location}
-            </div>
+            {userData.location && (
+              <div>
+                <i className="fas fa-map-marker-alt"></i>
+                {userData.location}
+              </div>
+            )}
           </div>
         )}
       </div>
