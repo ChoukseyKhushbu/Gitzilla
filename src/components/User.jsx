@@ -47,7 +47,11 @@ const User = () => {
           </div>
           {userData ? (
             <>
-              <h1>{userData.name ? (userData.name.length > 0 ? userData.name : userName) : userName}</h1>
+              <h1>
+                {userData.name && userData.name.length > 0
+                  ? userData.name
+                  : userName}
+              </h1>
               <p>{userData.bio}</p>
             </>
           ) : (
