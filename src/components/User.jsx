@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import RepoCard from "./RepoCard";
+import { Link } from "react-router-dom";
 
 const User = () => {
   let { userName } = useParams();
   const [userData, setuserData] = useState(null);
   const [repos, setrepos] = useState([]);
   const [skills, setSkills] = useState({});
+  const [userFound, isUserFound] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -29,14 +31,15 @@ const User = () => {
         });
         setSkills(obj);
       } catch (error) {
-        console.log(error);
-        console.log(error.response.status);
-        document.body.innerHTML = "404 User not found!!!";
+        isUserFound(false);
+        // console.log(error);
+        // console.log(error.response.status);
+        // document.body.innerHTML = "404 User not found!!!";
       }
     })();
   }, [userName]);
 
-  return (
+  return userFound ? (
     <>
       <div className="sidebar user">
         <div>
@@ -127,6 +130,14 @@ const User = () => {
         </div>
       </div>
     </>
+  ) : (
+    <div className="error">
+      <h1>Ooops!!</h1>
+      <h2>404 User Not Found</h2>
+      <Link to={`/`} className="button">
+        Go Back
+      </Link>
+    </div>
   );
 };
 
