@@ -61,7 +61,7 @@ const User = () => {
         <div>
           <h3>Skills</h3>
           <div className="skills">
-            {Object.keys(skills).length > 0
+            {Object.keys(skills).length > 0 || userData != null
               ? Object.keys(skills).map((s) => <span key={s}>{s}</span>)
               : [...Array(5)].map((a) => (
                   <span
