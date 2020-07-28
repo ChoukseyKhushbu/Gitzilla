@@ -210,6 +210,7 @@ div.user > div:first-child {
   p {
     padding-bottom: 15px;
     color: $light50;
+    overflow-wrap: break-word;
   }
   .repoTitle {
     font-size: 1.25rem;
