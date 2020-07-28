@@ -212,8 +212,6 @@ export default User;
 //         ) : (
 //           <>
 //             <h1>loading...</h1>
-//             <Link to="/users/DivyanshBatham">DB</Link>
-//             <Link to="/users/ChoukseyKhushbu">KC</Link>
 //           </>
 //         )}
 //       </>
