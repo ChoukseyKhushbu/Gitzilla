@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $light;
+  overflow-x: hidden;
 }
 
 code {
@@ -14,27 +15,6 @@ code {
     monospace;
 }
 
-/* .container { 
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-} */
-/* @media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-} */
 .mobileTop {
   display: none;
 }
@@ -45,15 +25,11 @@ code {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  /* background-color: yellow; */
 }
 .sidebar {
   box-sizing: border-box;
-  // color: white;
   padding: 20px;
   width: 30%;
-  /* flex: 1; */
-  /* max-width: 800px; */
   background-color: $darkBlue;
   height: 100vh;
   position: sticky;
@@ -62,31 +38,15 @@ code {
   &.user {
     display: flex;
     flex-direction: column;
-    // justify-content: space-around;
     overflow-y: scroll;
   }
-  /* position: fixed; */
 }
 .footer {
   position: absolute;
-  // z-index: 1;
   bottom: 10px;
-  // right: 5px;
 }
-// .sidebar::before {
-//   content: "";
-//   width: 500px;
-//   position: absolute;
-//   top: 0;
-//   left: -72px;
-//   transform: skewX(-10deg);
-//   // z-index: -1;
-// }
-/* .home {
-  background-image: url("./assets/background.svg");
-} */
+
 .main {
-  // text-align: center;
   background-color: $lightBlue;
   display: flex;
   flex-direction: column;
@@ -94,12 +54,9 @@ code {
     align-items: center;
     justify-content: center;
   }
-  /* width: 60%; */
   flex: 1;
   padding: 20px;
   overflow: hidden;
-  // overflow-y: scroll;
-  // height: 100vh;
 }
 
 .octocat {
@@ -164,7 +121,6 @@ div.user > div:first-child {
 .skills {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 .skills span {
@@ -180,10 +136,6 @@ div.user > div:first-child {
   grid-template-columns: repeat(3, calc((100% - 40px) / 3));
   gap: 20px;
   position: relative;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: center;
-  /* align-items: flex-start; */
 }
 
 .repoCard {
@@ -191,8 +143,6 @@ div.user > div:first-child {
   display: block;
   border-radius: 4px;
   padding: 20px;
-  // max-width: 300px;
-  /* flex: 1; */
   background-color: $darkBlueOpacity05;
   position: relative;
   transition: 0.2s all ease-in-out;
@@ -205,7 +155,6 @@ div.user > div:first-child {
     padding: 4px 6px;
     position: absolute;
     bottom: 15px;
-    // margin-top: 15px;
     overflow-wrap: break-word;
   }
   p {
@@ -255,12 +204,6 @@ div.user > div:first-child {
   }
 }
 
-// @media only screen and (max-width: 1024px) {
-//   .repoCard {
-//     max-width: 300px;
-//   }
-// }
-
 @media only screen and (max-width: 648px) {
   .container {
     flex-direction: column;
@@ -282,7 +225,6 @@ div.user > div:first-child {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // width: 60%;
   flex: 2;
 }
 .rightContainer {
@@ -290,15 +232,7 @@ div.user > div:first-child {
   flex: 1;
   position: relative;
 }
-// .leftConatiner::before {
-//   content: "";
-//   width: 500px;
-//   position: absolute;
-//   top: 0;
-//   left: -72px;
-//   transform: skewX(-10deg);
-//   z-index: -1;
-// }
+
 .rightContainer::before {
   content: "";
   width: 100%;
@@ -306,7 +240,6 @@ div.user > div:first-child {
   top: 0;
   right: -47px;
   transform: skewX(-13deg) translateX(-50%);
-  // z-index: -1;
   height: 100vh;
   background-color: $lightBlue;
 }
@@ -358,10 +291,7 @@ ul {
     content: "";
     width: 100%;
     position: absolute;
-    // top: 0;
-    // right: -47px;
     transform: skewY(-14deg) translateY(4%);
-    // z-index: 1;
     height: 100vh;
     background-color: $lightBlue;
   }
@@ -382,10 +312,6 @@ ul {
     padding: 10px 17px;
   }
   .mobileOctocat {
-    // position: absolute;
-    // width: 250px;
-    // left: 30%;
-    // bottom: 170px;
     position: fixed;
     width: 68%;
     max-width: 300px;

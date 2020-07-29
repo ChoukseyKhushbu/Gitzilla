@@ -4,11 +4,11 @@ import Home from "./Home";
 import User from "./User";
 import Container from "./Container";
 function App() {
-  const [userName, setuserName] = useState("");
+  const [userName, setUserName] = useState("");
 
   const changeName = (name) => {
     console.log(name);
-    setuserName(name);
+    setUserName(name);
   };
   return (
     <Switch>

@@ -20,11 +20,9 @@ const User = () => {
         const userRepos = await Axios.get(
           `${res.data.repos_url}?page=1&per_page=100&sort=updated`
         );
-        // console.log(userRepos.data);
         setrepos(userRepos.data);
         let obj = {};
         userRepos.data.forEach((repo) => {
-          // console.log(repo);
           if (repo.language) {
             obj[repo.language] = obj[repo.language] ? obj[repo.language]++ : 1;
           }
@@ -32,9 +30,6 @@ const User = () => {
         setSkills(obj);
       } catch (error) {
         isUserFound(false);
-        // console.log(error);
-        // console.log(error.response.status);
-        // document.body.innerHTML = "404 User not found!!!";
       }
     })();
   }, [userName]);
@@ -142,80 +137,3 @@ const User = () => {
 };
 
 export default User;
-
-// The below class component method I used to demonstrate a case
-//  of updating the component when the prop passed to it changes
-
-// class User extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       userData: null,
-//       repos: [],
-//     };
-//   }
-
-//   fetchDetails() {
-//     console.log("mounted");
-//     let { userName } = this.props.match.params;
-//     (async () => {
-//       try {
-//         const res = await Axios.get(`https://api.github.com/users/${userName}`);
-//         // setuserData(res.data);
-//         this.setState({
-//           userData: res.data,
-//         });
-//         const userRepos = await Axios.get(res.data.repos_url);
-//         console.log(userRepos.data);
-//         // setrepos(userRepos.data);
-//         this.setState({
-//           repos: userRepos.data,
-//         });
-//       } catch (error) {
-//         console.log(error.response.status);
-//         document.body.innerHTML = "404 User not found!!!";
-//       }
-//     })();
-//   }
-//   componentDidMount() {
-//     this.fetchDetails();
-//   }
-
-//   componentDidUpdate(prevProps) {
-//     if (this.props.match.params.userName !== prevProps.match.params.userName) {
-//       this.fetchDetails();
-//     }
-//   }
-
-//   render() {
-//     console.log(this.props);
-
-//     let { userData, repos } = this.state;
-//     return (
-//       <>
-//         {userData ? (
-//           <div>
-//             <h1>{userData.name}</h1>
-//             <Link to="/users/DivyanshBatham">DB</Link>
-//             <br />
-//             <Link to="/users/ChoukseyKhushbu">KC</Link>
-//             {repos.map((repo) => {
-//               return (
-//                 <li key={repo.id}>
-//                   {/* <a href={repo.html_url} target="_blank"> */}
-//                   {repo.name}
-//                   {/* </a> */}
-//                 </li>
-//               );
-//             })}
-//           </div>
-//         ) : (
-//           <>
-//             <h1>loading...</h1>
-//           </>
-//         )}
-//       </>
-//     );
-//   }
-// }
-// export default User;
