@@ -1,8 +1,10 @@
 import React from "react";
 
-const RepoCard = ({ repo }) => {
+const RepoCard = React.forwardRef((props, ref) => {
+  let { repo } = props;
   return (
     <a
+      ref={ref}
       href={repo.html_url}
       className="repoCard"
       target="_blank"
@@ -13,6 +15,6 @@ const RepoCard = ({ repo }) => {
       {repo.language && <span>{repo.language}</span>}
     </a>
   );
-};
+});
 
 export default RepoCard;
