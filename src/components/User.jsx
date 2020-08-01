@@ -43,7 +43,6 @@ const User = () => {
   useEffect(() => {
     (async () => {
       try {
-        console.log("User wala useEffect");
         const res = await Axios.get(
           `https://api.github.com/users/${userName}`,
           {
