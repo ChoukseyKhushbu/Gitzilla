@@ -20,10 +20,10 @@ const User = () => {
   const [userFound, isUserFound] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { reposLoading, error, repos, hasMore, skills } = useRepoSearch({
+  const { reposLoading, error, repos, hasMore, skills } = useRepoSearch(
     userName,
-    pageNumber,
-  });
+    pageNumber
+  );
 
   const observer = useRef();
   const lastRepoElementRef = useCallback(
