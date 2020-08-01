@@ -1,4 +1,5 @@
 @import "./variables.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -14,92 +15,54 @@ code {
     monospace;
 }
 
-/* .container { 
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-} */
-/* @media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-} */
 .mobileTop {
   display: none;
 }
+
 .mobileBottom {
   display: none;
 }
+
 .container {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  /* background-color: yellow; */
 }
+
 .sidebar {
   box-sizing: border-box;
-  // color: white;
   padding: 20px;
   width: 30%;
-  /* flex: 1; */
-  /* max-width: 800px; */
   background-color: $darkBlue;
   height: 100vh;
   position: sticky;
   top: 0;
   bottom: 0;
+
   &.user {
     display: flex;
     flex-direction: column;
-    // justify-content: space-around;
     overflow-y: scroll;
   }
-  /* position: fixed; */
 }
+
 .footer {
   position: absolute;
-  // z-index: 1;
   bottom: 10px;
-  // right: 5px;
 }
-// .sidebar::before {
-//   content: "";
-//   width: 500px;
-//   position: absolute;
-//   top: 0;
-//   left: -72px;
-//   transform: skewX(-10deg);
-//   // z-index: -1;
-// }
-/* .home {
-  background-image: url("./assets/background.svg");
-} */
+
 .main {
-  // text-align: center;
   background-color: $lightBlue;
   display: flex;
   flex-direction: column;
+
   &.home {
     align-items: center;
     justify-content: center;
   }
-  /* width: 60%; */
   flex: 1;
   padding: 20px;
   overflow: hidden;
-  // overflow-y: scroll;
-  // height: 100vh;
 }
 
 .octocat {
@@ -109,22 +72,27 @@ code {
   top: 50%;
   z-index: 1;
   transform: translateY(-50%);
+  max-width: 680px;
 }
 
 li {
   list-style-type: none;
   padding-bottom: 5px;
 }
+
 .heading {
   font-size: 5rem;
   margin-block-start: 0;
 }
+
 .inputContainer {
   margin-top: 60px;
 }
+
 a {
   text-decoration: none;
 }
+
 .button {
   display: inline-block;
   background-color: $pink;
@@ -132,6 +100,7 @@ a {
   padding: 10px 15px;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+
   &:hover {
     background-color: $lightPink;
   }
@@ -146,27 +115,31 @@ input[type="text"] {
   background: #f0f1f9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .avatar {
   background-color: gray;
   width: 100px;
   height: 100px;
   display: block;
   border-radius: 50px;
+
   img {
     height: 100%;
     width: 100%;
     border-radius: 50px;
   }
 }
-div.user > div:first-child {
+
+div.user>div:first-child {
   margin: 10px 0;
 }
+
 .skills {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
+
 .skills span {
   background-color: $light;
   text-align: center;
@@ -175,15 +148,12 @@ div.user > div:first-child {
   border-radius: 2px;
   margin: 0 15px 15px 0;
 }
+
 .repoContainer {
   display: grid;
   grid-template-columns: repeat(3, calc((100% - 40px) / 3));
   gap: 20px;
   position: relative;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: center;
-  /* align-items: flex-start; */
 }
 
 .repoCard {
@@ -191,11 +161,10 @@ div.user > div:first-child {
   display: block;
   border-radius: 4px;
   padding: 20px;
-  // max-width: 300px;
-  /* flex: 1; */
   background-color: $darkBlueOpacity05;
   position: relative;
   transition: 0.2s all ease-in-out;
+
   span {
     font-size: 0.75rem;
     background-color: $light;
@@ -205,38 +174,44 @@ div.user > div:first-child {
     padding: 4px 6px;
     position: absolute;
     bottom: 15px;
-    // margin-top: 15px;
     overflow-wrap: break-word;
   }
+
   p {
     padding-bottom: 15px;
     color: $light50;
     overflow-wrap: break-word;
   }
+
   .repoTitle {
     font-size: 1.25rem;
     font-weight: bold;
     color: $light;
     overflow-wrap: break-word;
   }
+
   &:hover {
     background-color: $darkBlue;
     transform: scale(1.05);
   }
 }
+
 .social {
   display: flex;
 }
-.social > span {
+
+.social>span {
   margin: 20px 20px 20px 0;
 }
 
-.details > div {
+.details>div {
   i {
     padding-right: 5px;
   }
+
   margin: 10px 0;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -244,6 +219,7 @@ div.user > div:first-child {
 ::-webkit-scrollbar-track {
   background: $darkBlue;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: $light20;
   border-radius: 6px;
@@ -255,50 +231,39 @@ div.user > div:first-child {
   }
 }
 
-// @media only screen and (max-width: 1024px) {
-//   .repoCard {
-//     max-width: 300px;
-//   }
-// }
-
 @media only screen and (max-width: 648px) {
   .container {
     flex-direction: column;
   }
+
   .sidebar.user {
     width: 100vw;
     overflow-y: hidden;
     position: unset;
     height: auto;
   }
+
   .repoContainer {
     display: grid;
     grid-template-columns: 100%;
   }
 }
+
 .leftContainer {
   background-color: $darkBlue;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // width: 60%;
   flex: 2;
 }
+
 .rightContainer {
   background-color: $lightBlue;
   flex: 1;
   position: relative;
 }
-// .leftConatiner::before {
-//   content: "";
-//   width: 500px;
-//   position: absolute;
-//   top: 0;
-//   left: -72px;
-//   transform: skewX(-10deg);
-//   z-index: -1;
-// }
+
 .rightContainer::before {
   content: "";
   width: 100%;
@@ -306,13 +271,14 @@ div.user > div:first-child {
   top: 0;
   right: -47px;
   transform: skewX(-13deg) translateX(-50%);
-  // z-index: -1;
   height: 100vh;
   background-color: $lightBlue;
 }
+
 ul {
   padding-inline-start: 0;
 }
+
 .content {
   position: absolute;
   font-size: 1.25rem;
@@ -324,47 +290,52 @@ ul {
   .leftContainer {
     display: none;
   }
+
   .rightContainer {
     display: none;
   }
+
   .sidebar.user {
     width: 100vw;
     overflow-y: hidden;
     position: unset;
     height: auto;
   }
+
   .container {
     flex-direction: column;
     overflow: hidden;
     background-color: $darkBlue;
   }
+
   .mobileTop {
     display: flex;
     flex-direction: column;
     background-color: $darkBlue;
     flex: 1;
     padding: 20px 41% 0 10%;
+
     p {
       font-size: 1.25rem;
     }
   }
+
   .mobileBottom {
     display: flex;
     background-color: transparent;
     flex: 1;
     position: relative;
   }
+
   .mobileBottom::before {
     content: "";
     width: 100%;
     position: absolute;
-    // top: 0;
-    // right: -47px;
     transform: skewY(-14deg) translateY(4%);
-    // z-index: 1;
     height: 100vh;
     background-color: $lightBlue;
   }
+
   .inputContainer {
     z-index: 1;
     width: 100%;
@@ -373,19 +344,18 @@ ul {
     padding-right: 20%;
     padding-top: 10%;
   }
+
   input[type="text"] {
     width: 100%;
   }
+
   .button {
     width: 100%;
     text-align: center;
     padding: 10px 17px;
   }
+
   .mobileOctocat {
-    // position: absolute;
-    // width: 250px;
-    // left: 30%;
-    // bottom: 170px;
     position: fixed;
     width: 68%;
     max-width: 300px;
@@ -395,16 +365,19 @@ ul {
     z-index: 1;
   }
 }
+
 .error {
   text-align: center;
   height: 100vh;
   width: 100vw;
   background-color: $darkBlue;
   color: $light;
+
   h1 {
     font-size: 3rem;
   }
 }
+
 @media screen and (min-width: 770px) and (max-width: 966px) {
   .content {
     p {
