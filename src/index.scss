@@ -1,4 +1,5 @@
 @import "./variables.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -17,14 +18,17 @@ code {
 .mobileTop {
   display: none;
 }
+
 .mobileBottom {
   display: none;
 }
+
 .container {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
 }
+
 .sidebar {
   box-sizing: border-box;
   padding: 20px;
@@ -34,12 +38,14 @@ code {
   position: sticky;
   top: 0;
   bottom: 0;
+
   &.user {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
   }
 }
+
 .footer {
   position: absolute;
   bottom: 10px;
@@ -49,6 +55,7 @@ code {
   background-color: $lightBlue;
   display: flex;
   flex-direction: column;
+
   &.home {
     align-items: center;
     justify-content: center;
@@ -65,22 +72,27 @@ code {
   top: 50%;
   z-index: 1;
   transform: translateY(-50%);
+  max-width: 680px;
 }
 
 li {
   list-style-type: none;
   padding-bottom: 5px;
 }
+
 .heading {
   font-size: 5rem;
   margin-block-start: 0;
 }
+
 .inputContainer {
   margin-top: 60px;
 }
+
 a {
   text-decoration: none;
 }
+
 .button {
   display: inline-block;
   background-color: $pink;
@@ -88,6 +100,7 @@ a {
   padding: 10px 15px;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+
   &:hover {
     background-color: $lightPink;
   }
@@ -102,26 +115,31 @@ input[type="text"] {
   background: #f0f1f9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .avatar {
   background-color: gray;
   width: 100px;
   height: 100px;
   display: block;
   border-radius: 50px;
+
   img {
     height: 100%;
     width: 100%;
     border-radius: 50px;
   }
 }
-div.user > div:first-child {
+
+div.user>div:first-child {
   margin: 10px 0;
 }
+
 .skills {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .skills span {
   background-color: $light;
   text-align: center;
@@ -130,6 +148,7 @@ div.user > div:first-child {
   border-radius: 2px;
   margin: 0 15px 15px 0;
 }
+
 .repoContainer {
   display: grid;
   grid-template-columns: repeat(3, calc((100% - 40px) / 3));
@@ -145,6 +164,7 @@ div.user > div:first-child {
   background-color: $darkBlueOpacity05;
   position: relative;
   transition: 0.2s all ease-in-out;
+
   span {
     font-size: 0.75rem;
     background-color: $light;
@@ -156,35 +176,42 @@ div.user > div:first-child {
     bottom: 15px;
     overflow-wrap: break-word;
   }
+
   p {
     padding-bottom: 15px;
     color: $light50;
     overflow-wrap: break-word;
   }
+
   .repoTitle {
     font-size: 1.25rem;
     font-weight: bold;
     color: $light;
     overflow-wrap: break-word;
   }
+
   &:hover {
     background-color: $darkBlue;
     transform: scale(1.05);
   }
 }
+
 .social {
   display: flex;
 }
-.social > span {
+
+.social>span {
   margin: 20px 20px 20px 0;
 }
 
-.details > div {
+.details>div {
   i {
     padding-right: 5px;
   }
+
   margin: 10px 0;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -192,6 +219,7 @@ div.user > div:first-child {
 ::-webkit-scrollbar-track {
   background: $darkBlue;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: $light20;
   border-radius: 6px;
@@ -207,17 +235,20 @@ div.user > div:first-child {
   .container {
     flex-direction: column;
   }
+
   .sidebar.user {
     width: 100vw;
     overflow-y: hidden;
     position: unset;
     height: auto;
   }
+
   .repoContainer {
     display: grid;
     grid-template-columns: 100%;
   }
 }
+
 .leftContainer {
   background-color: $darkBlue;
   display: flex;
@@ -226,6 +257,7 @@ div.user > div:first-child {
   justify-content: center;
   flex: 2;
 }
+
 .rightContainer {
   background-color: $lightBlue;
   flex: 1;
@@ -242,9 +274,11 @@ div.user > div:first-child {
   height: 100vh;
   background-color: $lightBlue;
 }
+
 ul {
   padding-inline-start: 0;
 }
+
 .content {
   position: absolute;
   font-size: 1.25rem;
@@ -256,36 +290,43 @@ ul {
   .leftContainer {
     display: none;
   }
+
   .rightContainer {
     display: none;
   }
+
   .sidebar.user {
     width: 100vw;
     overflow-y: hidden;
     position: unset;
     height: auto;
   }
+
   .container {
     flex-direction: column;
     overflow: hidden;
     background-color: $darkBlue;
   }
+
   .mobileTop {
     display: flex;
     flex-direction: column;
     background-color: $darkBlue;
     flex: 1;
     padding: 20px 41% 0 10%;
+
     p {
       font-size: 1.25rem;
     }
   }
+
   .mobileBottom {
     display: flex;
     background-color: transparent;
     flex: 1;
     position: relative;
   }
+
   .mobileBottom::before {
     content: "";
     width: 100%;
@@ -294,6 +335,7 @@ ul {
     height: 100vh;
     background-color: $lightBlue;
   }
+
   .inputContainer {
     z-index: 1;
     width: 100%;
@@ -302,14 +344,17 @@ ul {
     padding-right: 20%;
     padding-top: 10%;
   }
+
   input[type="text"] {
     width: 100%;
   }
+
   .button {
     width: 100%;
     text-align: center;
     padding: 10px 17px;
   }
+
   .mobileOctocat {
     position: fixed;
     width: 68%;
@@ -320,16 +365,19 @@ ul {
     z-index: 1;
   }
 }
+
 .error {
   text-align: center;
   height: 100vh;
   width: 100vw;
   background-color: $darkBlue;
   color: $light;
+
   h1 {
     font-size: 3rem;
   }
 }
+
 @media screen and (min-width: 770px) and (max-width: 966px) {
   .content {
     p {
