@@ -172,9 +172,10 @@ div.user>div:first-child {
     color: black;
     border-radius: 2px;
     padding: 4px 6px;
-    position: absolute;
     bottom: 15px;
     overflow-wrap: break-word;
+    margin: 0 8px 8px 0;
+    display: inline-flex;
   }
 
   p {
