@@ -1,18 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Axios from "axios";
 import RepoCard from "./RepoCard";
 import { Link } from "react-router-dom";
 import useRepoSearch from "./useRepoSearch";
 import { useRef } from "react";
 import { useCallback } from "react";
-
-const headers = {
-  "Content-Type": "application/json",
-  Accept: "application/vnd.github.v3+json",
-  Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-};
+import { graphqlClient } from "../utils/graphqlClient";
 
 const User = () => {
   let { userName } = useParams();
@@ -40,21 +34,37 @@ const User = () => {
     [reposLoading, hasMore]
   );
 
+  const searchUserQuery = `
+  query searchUser($username: String!) {
+    user(login: $username) {
+      avatarUrl
+      name
+      url
+      login
+      bio
+      websiteUrl
+      location
+      company
+      following {
+        totalCount
+      }
+      followers {
+        totalCount
+      }
+    }
+  }
+  `;
+
   useEffect(() => {
     (async () => {
       try {
-        const res = await Axios.get(
-          `https://api.github.com/users/${userName}`,
-          {
-            headers: headers,
-          }
-        );
-        setuserData(res.data);
+        const res = await graphqlClient.request(searchUserQuery, {username: userName});
+        setuserData(res.user);
       } catch (error) {
         isUserFound(false);
       }
     })();
-  }, [userName]);
+  }, [userName, searchUserQuery]);
 
   return userFound ? (
     <>
@@ -62,7 +72,7 @@ const User = () => {
         <div>
           <div className="avatar shine">
             {userData && (
-              <img src={userData.avatar_url} className="profile" alt="" />
+              <img src={userData.avatarUrl} className="profile" alt="" />
             )}
           </div>
           {userData ? (
@@ -98,8 +108,8 @@ const User = () => {
         </div>
         {userData && (
           <div className="social">
-            <span>{userData.followers} followers</span>
-            <span>{userData.following} following</span>
+            <span>{userData.followers.totalCount} followers</span>
+            <span>{userData.following.totalCount} following</span>
           </div>
         )}
         {userData && (
