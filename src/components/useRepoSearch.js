@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { graphqlClient } from "../utils/graphqlClient";
+import { searchRepoQuery } from "../utils/queries";
 
 export default function useRepoSearch(username, pageNumber) {
   const [reposLoading, setReposLoading] = useState(true);
@@ -7,24 +8,7 @@ export default function useRepoSearch(username, pageNumber) {
   const [repos, setRepos] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [skills, setSkills] = useState({});
-  const searchRepoQuery = `
-  query searchRepos($username: String!) {
-    user(login: $username) {
-      repositories(last: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
-        nodes {
-          name
-          description
-          projectsUrl
-          languages(last: 5) {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-  `;
+
   useEffect(() => {
     setRepos([]);
   }, [username]);
@@ -54,7 +38,7 @@ export default function useRepoSearch(username, pageNumber) {
       .catch((e) => {
         setError(true);
       });
-  }, [username, pageNumber, skills, searchRepoQuery]);
+  }, [username, pageNumber, skills]);
   return { reposLoading, error, repos, hasMore, skills };
 }
 

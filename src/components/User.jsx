@@ -7,6 +7,7 @@ import useRepoSearch from "./useRepoSearch";
 import { useRef } from "react";
 import { useCallback } from "react";
 import { graphqlClient } from "../utils/graphqlClient";
+import { searchUserQuery } from "../utils/queries";
 
 const User = () => {
   let { userName } = useParams();
@@ -34,27 +35,6 @@ const User = () => {
     [reposLoading, hasMore]
   );
 
-  const searchUserQuery = `
-  query searchUser($username: String!) {
-    user(login: $username) {
-      avatarUrl
-      name
-      url
-      login
-      bio
-      websiteUrl
-      location
-      company
-      following {
-        totalCount
-      }
-      followers {
-        totalCount
-      }
-    }
-  }
-  `;
-
   useEffect(() => {
     (async () => {
       try {
@@ -64,7 +44,7 @@ const User = () => {
         isUserFound(false);
       }
     })();
-  }, [userName, searchUserQuery]);
+  }, [userName]);
 
   return userFound ? (
     <>
