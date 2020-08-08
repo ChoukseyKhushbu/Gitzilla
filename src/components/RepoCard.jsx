@@ -13,15 +13,9 @@ const RepoCard = React.forwardRef((props, ref) => {
       <div className="repoTitle">{repo.name}</div>
       <p>{repo.description}</p>
       <div>
-        {repo.languages || repo.languages.length > 0
-          ? repo.languages.map((s) => <span key={s}>{s}</span>)
-          : repo.languages.map((a) => (
-              <span
-                key={a}
-                className="shine"
-                style={{ width: "50px", height: "20px" }}
-              ></span>
-            ))}
+        {repo.languages &&
+          repo.languages.length > 0 &&
+          repo.languages.map((s) => <span key={s}>{s}</span>)}
       </div>
     </a>
   );
