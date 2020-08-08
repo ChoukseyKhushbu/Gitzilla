@@ -5,14 +5,24 @@ const RepoCard = React.forwardRef((props, ref) => {
   return (
     <a
       ref={ref}
-      href={repo.html_url}
+      href={repo.url}
       className="repoCard"
       target="_blank"
       rel="noopener noreferrer"
     >
       <div className="repoTitle">{repo.name}</div>
       <p>{repo.description}</p>
-      {repo.language && <span>{repo.language}</span>}
+      <div>
+        {repo.languages || repo.languages.length > 0
+          ? repo.languages.map((s) => <span key={s}>{s}</span>)
+          : repo.languages.map((a) => (
+              <span
+                key={a}
+                className="shine"
+                style={{ width: "50px", height: "20px" }}
+              ></span>
+            ))}
+      </div>
     </a>
   );
 });

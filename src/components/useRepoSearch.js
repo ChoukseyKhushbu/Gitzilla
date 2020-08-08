@@ -1,53 +1,66 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { graphqlClient } from "../utils/graphqlClient";
+import { searchRepoQuery } from "../utils/queries";
 
-export default function useRepoSearch(query, pageNumber) {
+export default function useRepoSearch(username, currCursor) {
   const [reposLoading, setReposLoading] = useState(true);
   const [error, setError] = useState(false);
   const [repos, setRepos] = useState([]);
   const [hasMore, setHasMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState(null);
+
+  // const [endCursor, setEndCursor] = useState(null);
   const [skills, setSkills] = useState({});
 
   useEffect(() => {
     setRepos([]);
-  }, [query]);
+  }, [username]);
 
   useEffect(() => {
     setReposLoading(true);
     setError(false);
-    axios
-      .get(
-        `https://api.github.com/users/${query}/repos?page=${pageNumber}&per_page=100&sort=updated`
-      )
+
+    graphqlClient
+      .rawRequest(searchRepoQuery, { username: username, after: currCursor })
       .then((res) => {
+        const { hasNextPage, endCursor } = res.data.user.repositories.pageInfo;
+        const repos = toRepositories(res.data);
         setRepos((previousRepos) => {
-          return [...previousRepos, ...res.data];
+          return [...previousRepos, ...repos];
         });
-        // setSkills((prevSkills) => {
-        //   let updatedSkills = { ...prevSkills };
-        //   res.data.forEach((repo) => {
-        //     if (repo.language) {
-        //       updatedSkills[repo.language] = updatedSkills[repo.language]
-        //         ? updatedSkills[repo.language]++
-        //         : 1;
-        //     }
-        //   });
-        //   return { updatedSkills };
-        // });
         let obj = skills;
-        res.data.forEach((repo) => {
-          if (repo.language) {
-            obj[repo.language] = obj[repo.language] ? obj[repo.language]++ : 1;
+        repos.forEach((repo) => {
+          if (repo.languages) {
+            repo.languages.forEach((language) => {
+              obj[language] = obj[language] ? obj[language]++ : 1;
+            });
           }
         });
         setSkills(obj);
-
-        setHasMore(res.data.length > 0);
+        setHasMore(hasNextPage);
+        setNextCursor(endCursor);
         setReposLoading(false);
       })
       .catch((e) => {
         setError(true);
       });
-  }, [query, pageNumber, skills]);
-  return { reposLoading, error, repos, hasMore, skills };
+  }, [username, currCursor, skills]);
+  return { reposLoading, error, repos, hasMore, skills, nextCursor };
+}
+
+function toRepositories(data) {
+  let result = [];
+  if (data.user) {
+    result = data.user.repositories.nodes.map((x) => {
+      return {
+        name: x.name,
+        description: x.description,
+        url: x.url,
+        languages: x.languages.nodes.map((l) => {
+          return l.name;
+        }),
+      };
+    });
+  }
+  return result;
 }
