@@ -24,6 +24,7 @@ query searchRepos($username: String!,$after:String) {
   user(login: $username) {
     repositories(orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: OWNER, isFork: false, first: 30, after: $after) {
       nodes {
+        id
         name
         description
         url

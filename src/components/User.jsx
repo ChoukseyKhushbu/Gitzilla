@@ -31,9 +31,7 @@ const User = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore && currCursor !== nextCursor) {
-          // setPageNumber((prevPageNumber) => prevPageNumber + 1);
           setCurrCursor(nextCursor);
-          // fetchRepositories()
         }
       });
       if (node) observer.current.observe(node);
@@ -85,9 +83,9 @@ const User = () => {
           <div className="skills">
             {Object.keys(skills).length > 0 || repos.length > 0
               ? Object.keys(skills).map((s) => <span key={s}>{s}</span>)
-              : [...Array(5)].map((a) => (
+              : [...Array(5)].map((_, index) => (
                   <span
-                    key={a}
+                    key={index}
                     className="shine"
                     style={{ width: "50px", height: "20px" }}
                   ></span>
@@ -142,9 +140,9 @@ const User = () => {
           })}
           {reposLoading &&
             !error &&
-            [...Array(12)].map((p) => (
+            [...Array(12)].map((_, index) => (
               <div
-                key={p}
+                key={index}
                 className="repoCard shine"
                 style={{ height: "150px" }}
               ></div>
