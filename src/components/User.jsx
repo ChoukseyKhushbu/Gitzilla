@@ -13,12 +13,16 @@ const User = () => {
   let { userName } = useParams();
   const [userData, setuserData] = useState(null);
   const [userFound, isUserFound] = useState(true);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [currCursor, setCurrCursor] = useState(null);
 
-  const { reposLoading, error, repos, hasMore, skills } = useRepoSearch(
-    userName,
-    pageNumber
-  );
+  const {
+    reposLoading,
+    error,
+    repos,
+    hasMore,
+    skills,
+    nextCursor,
+  } = useRepoSearch(userName, currCursor);
 
   const observer = useRef();
   const lastRepoElementRef = useCallback(
@@ -26,19 +30,23 @@ const User = () => {
       if (reposLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        if (entries[0].isIntersecting && hasMore && currCursor !== nextCursor) {
+          // setPageNumber((prevPageNumber) => prevPageNumber + 1);
+          setCurrCursor(nextCursor);
+          // fetchRepositories()
         }
       });
       if (node) observer.current.observe(node);
     },
-    [reposLoading, hasMore]
+    [reposLoading, hasMore, nextCursor, currCursor]
   );
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await graphqlClient.request(searchUserQuery, {username: userName});
+        const res = await graphqlClient.request(searchUserQuery, {
+          username: userName,
+        });
         setuserData(res.user);
       } catch (error) {
         isUserFound(false);
@@ -100,16 +108,16 @@ const User = () => {
                 {userData.company}
               </div>
             )}
-            {userData.blog && (
+            {userData.websiteUrl && (
               <div>
                 <i className="fas fa-link"></i>
                 <a
-                  href={userData.blog}
+                  href={userData.websiteUrl}
                   style={{ color: "inherit" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {userData.blog}
+                  {userData.websiteUrl}
                 </a>
               </div>
             )}
@@ -156,4 +164,3 @@ const User = () => {
 };
 
 export default User;
-

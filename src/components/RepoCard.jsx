@@ -5,7 +5,7 @@ const RepoCard = React.forwardRef((props, ref) => {
   return (
     <a
       ref={ref}
-      href={repo.html_url}
+      href={repo.url}
       className="repoCard"
       target="_blank"
       rel="noopener noreferrer"
@@ -19,7 +19,7 @@ const RepoCard = React.forwardRef((props, ref) => {
               <span
                 key={a}
                 className="shine"
-                style={{ width: "50px", height: "20px"}}
+                style={{ width: "50px", height: "20px" }}
               ></span>
             ))}
       </div>

@@ -1,4 +1,3 @@
-
 export const searchUserQuery = `
 query searchUser($username: String!) {
   user(login: $username) {
@@ -21,19 +20,24 @@ query searchUser($username: String!) {
 `;
 
 export const searchRepoQuery = `
-query searchRepos($username: String!) {
+query searchRepos($username: String!,$after:String) {
   user(login: $username) {
-    repositories(last: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
+    repositories(orderBy: {field: UPDATED_AT, direction: DESC}, ownerAffiliations: OWNER, isFork: false, first: 30, after: $after) {
       nodes {
         name
         description
-        projectsUrl
-        languages(last: 5) {
+        url
+        languages(first: 5) {
           nodes {
             name
           }
         }
       }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
     }
   }
 }
