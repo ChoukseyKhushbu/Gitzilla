@@ -8,8 +8,6 @@ export default function useRepoSearch(username, currCursor) {
   const [repos, setRepos] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState(null);
-
-  // const [endCursor, setEndCursor] = useState(null);
   const [skills, setSkills] = useState({});
 
   useEffect(() => {
@@ -53,6 +51,7 @@ function toRepositories(data) {
   if (data.user) {
     result = data.user.repositories.nodes.map((x) => {
       return {
+        id: x.id,
         name: x.name,
         description: x.description,
         url: x.url,

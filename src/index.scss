@@ -130,7 +130,7 @@ input[type="text"] {
   }
 }
 
-div.user>div:first-child {
+div.user > div:first-child {
   margin: 10px 0;
 }
 
@@ -158,9 +158,10 @@ div.user>div:first-child {
 
 .repoCard {
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: 4px;
-  padding: 20px;
+  padding: 20px 20px 12px 20px;
   background-color: $darkBlueOpacity05;
   position: relative;
   transition: 0.2s all ease-in-out;
@@ -172,7 +173,8 @@ div.user>div:first-child {
     color: black;
     border-radius: 2px;
     padding: 4px 6px;
-    bottom: 15px;
+    // position: absolute;
+    // bottom: 15px;
     overflow-wrap: break-word;
     margin: 0 8px 8px 0;
     display: inline-flex;
@@ -182,6 +184,7 @@ div.user>div:first-child {
     padding-bottom: 15px;
     color: $light50;
     overflow-wrap: break-word;
+    flex: 1;
   }
 
   .repoTitle {
@@ -201,11 +204,11 @@ div.user>div:first-child {
   display: flex;
 }
 
-.social>span {
+.social > span {
   margin: 20px 20px 20px 0;
 }
 
-.details>div {
+.details > div {
   i {
     padding-right: 5px;
   }
