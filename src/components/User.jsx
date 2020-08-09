@@ -1,40 +1,53 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Axios from "axios";
 import RepoCard from "./RepoCard";
 import { Link } from "react-router-dom";
+import useRepoSearch from "./useRepoSearch";
+import { useRef } from "react";
+import { useCallback } from "react";
+import { graphqlClient } from "../utils/graphqlClient";
+import { searchUserQuery } from "../utils/queries";
 
 const User = () => {
   let { userName } = useParams();
   const [userData, setuserData] = useState(null);
-  const [repos, setrepos] = useState([]);
-  const [skills, setSkills] = useState({});
   const [userFound, isUserFound] = useState(true);
+  const [currCursor, setCurrCursor] = useState(null);
+
+  const {
+    reposLoading,
+    error,
+    repos,
+    hasMore,
+    skills,
+    nextCursor,
+  } = useRepoSearch(userName, currCursor);
+
+  const observer = useRef();
+  const lastRepoElementRef = useCallback(
+    (node) => {
+      if (reposLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore && currCursor !== nextCursor) {
+          setCurrCursor(nextCursor);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [reposLoading, hasMore, nextCursor, currCursor]
+  );
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await Axios.get(`https://api.github.com/users/${userName}`);
-        setuserData(res.data);
-        const userRepos = await Axios.get(
-          `${res.data.repos_url}?page=1&per_page=100&sort=updated`
-        );
-        // console.log(userRepos.data);
-        setrepos(userRepos.data);
-        let obj = {};
-        userRepos.data.forEach((repo) => {
-          // console.log(repo);
-          if (repo.language) {
-            obj[repo.language] = obj[repo.language] ? obj[repo.language]++ : 1;
-          }
+        const res = await graphqlClient.request(searchUserQuery, {
+          username: userName,
         });
-        setSkills(obj);
+        setuserData(res.user);
       } catch (error) {
         isUserFound(false);
-        // console.log(error);
-        // console.log(error.response.status);
-        // document.body.innerHTML = "404 User not found!!!";
       }
     })();
   }, [userName]);
@@ -45,7 +58,7 @@ const User = () => {
         <div>
           <div className="avatar shine">
             {userData && (
-              <img src={userData.avatar_url} className="profile" alt="" />
+              <img src={userData.avatarUrl} className="profile" alt="" />
             )}
           </div>
           {userData ? (
@@ -70,9 +83,9 @@ const User = () => {
           <div className="skills">
             {Object.keys(skills).length > 0 || repos.length > 0
               ? Object.keys(skills).map((s) => <span key={s}>{s}</span>)
-              : [...Array(5)].map((a) => (
+              : [...Array(5)].map((_, index) => (
                   <span
-                    key={a}
+                    key={index}
                     className="shine"
                     style={{ width: "50px", height: "20px" }}
                   ></span>
@@ -81,8 +94,8 @@ const User = () => {
         </div>
         {userData && (
           <div className="social">
-            <span>{userData.followers} followers</span>
-            <span>{userData.following} following</span>
+            <span>{userData.followers.totalCount} followers</span>
+            <span>{userData.following.totalCount} following</span>
           </div>
         )}
         {userData && (
@@ -93,16 +106,16 @@ const User = () => {
                 {userData.company}
               </div>
             )}
-            {userData.blog && (
+            {userData.websiteUrl && (
               <div>
                 <i className="fas fa-link"></i>
                 <a
-                  href={userData.blog}
+                  href={userData.websiteUrl}
                   style={{ color: "inherit" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {userData.blog}
+                  {userData.websiteUrl}
                 </a>
               </div>
             )}
@@ -118,15 +131,22 @@ const User = () => {
       <div className="main">
         <h1>Repositories</h1>
         <div className="repoContainer">
-          {userData && repos.length > 0
-            ? repos.map((repo) => <RepoCard key={repo.id} repo={repo} />)
-            : [...Array(12)].map((p) => (
-                <div
-                  key={p}
-                  className="repoCard shine"
-                  style={{ height: "150px" }}
-                ></div>
-              ))}
+          {repos.map((repo, index) => {
+            if (repos.length === index + 1) {
+              return (
+                <RepoCard ref={lastRepoElementRef} key={repo.id} repo={repo} />
+              );
+            } else return <RepoCard key={repo.id} repo={repo} />;
+          })}
+          {reposLoading &&
+            !error &&
+            [...Array(12)].map((_, index) => (
+              <div
+                key={index}
+                className="repoCard shine"
+                style={{ height: "150px" }}
+              ></div>
+            ))}
         </div>
       </div>
     </>
@@ -142,80 +162,3 @@ const User = () => {
 };
 
 export default User;
-
-// The below class component method I used to demonstrate a case
-//  of updating the component when the prop passed to it changes
-
-// class User extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       userData: null,
-//       repos: [],
-//     };
-//   }
-
-//   fetchDetails() {
-//     console.log("mounted");
-//     let { userName } = this.props.match.params;
-//     (async () => {
-//       try {
-//         const res = await Axios.get(`https://api.github.com/users/${userName}`);
-//         // setuserData(res.data);
-//         this.setState({
-//           userData: res.data,
-//         });
-//         const userRepos = await Axios.get(res.data.repos_url);
-//         console.log(userRepos.data);
-//         // setrepos(userRepos.data);
-//         this.setState({
-//           repos: userRepos.data,
-//         });
-//       } catch (error) {
-//         console.log(error.response.status);
-//         document.body.innerHTML = "404 User not found!!!";
-//       }
-//     })();
-//   }
-//   componentDidMount() {
-//     this.fetchDetails();
-//   }
-
-//   componentDidUpdate(prevProps) {
-//     if (this.props.match.params.userName !== prevProps.match.params.userName) {
-//       this.fetchDetails();
-//     }
-//   }
-
-//   render() {
-//     console.log(this.props);
-
-//     let { userData, repos } = this.state;
-//     return (
-//       <>
-//         {userData ? (
-//           <div>
-//             <h1>{userData.name}</h1>
-//             <Link to="/users/DivyanshBatham">DB</Link>
-//             <br />
-//             <Link to="/users/ChoukseyKhushbu">KC</Link>
-//             {repos.map((repo) => {
-//               return (
-//                 <li key={repo.id}>
-//                   {/* <a href={repo.html_url} target="_blank"> */}
-//                   {repo.name}
-//                   {/* </a> */}
-//                 </li>
-//               );
-//             })}
-//           </div>
-//         ) : (
-//           <>
-//             <h1>loading...</h1>
-//           </>
-//         )}
-//       </>
-//     );
-//   }
-// }
-// export default User;
