@@ -10,7 +10,7 @@
   * [SASS](https://sass-lang.com/documentation/syntax)
 
 ## :round_pushpin: API
-  [GitHub API](https://docs.github.com/en/rest)
+  [GitHub API](https://docs.github.com/en/graphql)
 
 ## :zap: Installation
 **1. Clone this repo by running either of the below commands.**
