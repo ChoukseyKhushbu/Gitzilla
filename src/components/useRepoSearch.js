@@ -49,17 +49,19 @@ export default function useRepoSearch(username, currCursor) {
 function toRepositories(data) {
   let result = [];
   if (data.user) {
-    result = data.user.repositories.nodes.map((x) => {
-      return {
-        id: x.id,
-        name: x.name,
-        description: x.description,
-        url: x.url,
-        languages: x.languages.nodes.map((l) => {
-          return l.name;
-        }),
-      };
-    });
+    result = data.user.repositories.nodes
+      .sort((a, b) => a.isFork - b.isFork)
+      .map((x) => {
+        return {
+          id: x.id,
+          name: x.name,
+          description: x.description,
+          url: x.url,
+          languages: x.languages.nodes.map((l) => {
+            return l.name;
+          }),
+        };
+      });
   }
   return result;
 }
