@@ -57,11 +57,13 @@ function toRepositories(data) {
           name: x.name,
           description: x.description,
           url: x.url,
+          isFork: x.isFork,
           languages: x.languages.nodes.map((l) => {
             return l.name;
           }),
         };
       });
   }
+  console.log(result);
   return result;
 }
