@@ -100,6 +100,19 @@ const User = () => {
         )}
         {userData && (
           <div className="details">
+            {userData.url && (
+              <div>
+                <i class="fab fa-github-alt"></i>
+                <a
+                  href={userData.url}
+                  style={{ color: "inherit" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {'@' + userName}
+                </a>
+              </div>
+            )}
             {userData.company && (
               <div>
                 <i className="fas fa-building"></i>
