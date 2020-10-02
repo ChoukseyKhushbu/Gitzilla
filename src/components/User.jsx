@@ -100,15 +100,28 @@ const User = () => {
         )}
         {userData && (
           <div className="details">
+            {userData.url && (
+              <div>
+                <i class="fab fa-github-alt" />
+                <a
+                  href={userData.url}
+                  style={{ color: "inherit" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {'@' + userName}
+                </a>
+              </div>
+            )}
             {userData.company && (
               <div>
-                <i className="fas fa-building"></i>
+                <i className="fas fa-building" />
                 {userData.company}
               </div>
             )}
             {userData.websiteUrl && (
               <div>
-                <i className="fas fa-link"></i>
+                <i className="fas fa-link" />
                 <a
                   href={userData.websiteUrl}
                   style={{ color: "inherit" }}
@@ -121,7 +134,7 @@ const User = () => {
             )}
             {userData.location && (
               <div>
-                <i className="fas fa-map-marker-alt"></i>
+                <i className="fas fa-map-marker-alt" />
                 {userData.location}
               </div>
             )}
