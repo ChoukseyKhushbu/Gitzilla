@@ -1,6 +1,8 @@
 
 # GitZilla :star2:
 
+![GitZilla Website](./gitzilla.png)
+
 ## :woman_technologist: Technology Stack
   * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   * [React](https://reactjs.org)
