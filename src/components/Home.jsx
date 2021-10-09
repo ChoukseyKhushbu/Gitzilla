@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 const Home = (props) => {
+  const history = useHistory();
   const handleChange = async (e) => {
     const newUser = e.target.value;
     props.changeName(newUser);
@@ -26,6 +28,7 @@ const Home = (props) => {
               type="text"
               value={props.userName}
               onChange={handleChange}
+              onKeyUp={e => e.key === 'Enter' && history.push(`/users/${props.userName}`)}
             />
             <Link
               to={`/users/${props.userName}`}

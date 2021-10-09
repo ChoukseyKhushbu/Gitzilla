@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import User from "./User";
@@ -6,10 +6,9 @@ import Container from "./Container";
 function App() {
   const [userName, setUserName] = useState("");
 
-  const changeName = (name) => {
-    console.log(name);
+  const changeName = useCallback((name) => {
     setUserName(name);
-  };
+  },[setUserName]);
   return (
     <Switch>
       <Container>
